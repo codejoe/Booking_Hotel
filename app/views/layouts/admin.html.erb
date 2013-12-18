@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>BookingHotel</title>
+  <%= stylesheet_link_tag    "application", media: "all", "data-turbolinks-track" => true %>
+  <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
+  <%= csrf_meta_tags %>
+</head>
+<body>
+<nav class="top-bar" data-topbar>
+  <ul class="title-area">
+    <li class="name">
+      <h1><a href="<%= root_path %>">[ Hotel 1 Jam Saja ]</a></h1>
+    </li>
+    <li class="toggle-topbar menu-icon"><a href="#"><span>Menu</span></a></li>
+  </ul>
+
+  <section class="top-bar-section">
+    <!-- Right Nav Section -->
+    <ul class="right">      
+      <li> <a href="#">User Logged In, <b><%= current_user.email %></b>. </a></li>
+      <li class="active"><%= link_to 'Sign Out !', destroy_user_session_path, method: 'delete' %></li>
+    </ul>
+  </section>
+</nav>
+
+<%= yield %>
+
+</body>
+</html>

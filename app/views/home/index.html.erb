@@ -1,0 +1,56 @@
+<div id="middlePan">
+  <br/>
+
+  <div class="small-2 large-12 columns">
+    <p><%= "Welcome back, #{current_customer.email}. " if current_customer %> <%= link_to 'Sign Out !', destroy_customer_session_path, method: 'delete' if current_customer %> </p> 
+  </div>
+
+  <div class="small-2 large-12 columns">
+    <dl class="sub-nav">
+      <dd class="active"><a href="#">Your: </a></dd>
+      <dd><%= link_to 'Profile', admin_rooms_path %></dd>
+      <dd><%= link_to 'Reserve Rooms', admin_types_path %></dd>
+    </dl>
+  </div>
+
+  <div class="small-2 large-12 columns">
+    <h1>Home#index</h1>
+  </div>
+
+  <div class="small-2 large-12 columns">
+    <table class="table">
+      <tr>
+        <th> No. </th>
+        <th> Room Number </th>
+        <th> Room Type </th>
+        <th> Status </th>
+        <th></th>
+      </tr>
+      <% 
+      if params[:page] == 0 || params[:page] == 1 || params[:page] == nil
+        number = 0
+      else
+        number = (params[:page].to_i - 1) * 10     
+      end
+      %>
+      <% @rooms.each do |room| %>
+      <tr>
+        <td><%= number += 1 %>.</td>
+        <td><%= room.number %></td>
+        <td>
+          <%= room.type.name if room.type %>
+        </td>
+        <td>
+          <%= room.status == 'Available' ? content_tag(:span, room.status, class: "success label") : content_tag(:span, room.status, class: "alert label") %>
+        </td>
+        <td>
+          <% if room.status == 'Available' %>
+          <span class="secondary round label"> <%= link_to 'Book !', edit_reservation_path(room.id) %> </span> 
+          <% end %>
+        </td>
+      </tr>
+      <% end %>
+    </table>
+    <p><%= paginate @rooms %></p>
+  </div>
+</div>

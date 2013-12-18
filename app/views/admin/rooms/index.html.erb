@@ -1,0 +1,53 @@
+<div id="middlePan">
+
+  <div class="small-2 large-12 columns">
+    
+  </div>
+
+  <div class="small-2 large-12 columns">
+    <h1>Admin::Rooms#index</h1>
+  </div>
+
+  <div class="small-2 large-12 columns">
+    <dl class="sub-nav">
+      <dd class="active"><a href="#">Nav: </a></dd>
+      <dd><%= link_to 'Rooms', admin_rooms_path %></dd>
+      <dd><%= link_to 'Types', admin_types_path %></dd>
+    </dl>
+  </div>
+
+  <div class="small-2 large-12 columns">
+    <p><%= link_to 'New Room', new_admin_room_path %></p>
+    <table class="table">
+      <tr>
+        <th> No. </th>
+        <th> Room Number </th>
+        <th> Room Type </th>
+        <th> Status </th>
+        <th></th>
+      </tr>
+      <% 
+      if params[:page] == 0 || params[:page] == 1 || params[:page] == nil
+        number = 0
+      else
+        number = (params[:page].to_i - 1) * 10     
+      end
+      %>
+      <% @rooms.each do |room| %>
+      <tr>
+        <td><%= number += 1 %>.</td>
+        <td><%= room.number %></td>
+        <td>
+          <%= room.type.name if room.type %>
+        </td>
+        <td>
+          <%= room.status == 'Available' ? content_tag(:span, room.status, class: "success label") : content_tag(:span, room.status, class: "alert label") %>
+        </td>
+        <td><%= link_to 'Edit', edit_admin_room_path(room.id) %> | 
+        <%= link_to 'Delete', admin_room_path(room.id), method: 'delete', confirm: "Are You Sure \nDelete Room #{room.number} ?" %> </td>
+      </tr>
+      <% end %>
+    </table>
+    <p><%= paginate @rooms %></p>
+  </div>
+</div>

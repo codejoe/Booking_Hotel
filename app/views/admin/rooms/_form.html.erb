@@ -1,0 +1,13 @@
+<div id="middlePan">
+  <br>
+  <div class="small-2 large-12 columns">
+    <%= form_for([:admin, @room]) do |f| %>
+      <%= f.label 'Number :' %> <%= f.text_field :number %>
+      <%= f.label 'Type : ' %> <%= f.select(:type_id, @types.map{ |type| [type.name, "#{type.id}"] }) %>
+      <%= f.label 'Status : ' unless @room.new_record? %> 
+      <%#= f.select(:status, options_for_select([['Available', 'Available'], ['Not Available', 'Not Available']])) %>
+      <%= f.select(:status, @statuses.map{ |key, value| [value, value] }) %>
+      <%= f.submit %> | <%= link_to 'Cancel', admin_rooms_path %>
+    <% end %>
+  </div>
+</div>

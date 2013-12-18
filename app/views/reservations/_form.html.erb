@@ -1,0 +1,15 @@
+<div class="small-2 large-4 columns">
+<%= form_tag(reservation_path, method: "post") do %>
+  <%= label_tag 'User ID : ' %> <%= text_field_tag 'reservation[user_id]', current_customer.id %>
+  <%= label_tag 'Room ID : ' %> <%= text_field_tag 'reservation[room_id]', params[:id] %>
+  <%= label_tag 'Start Date :' %> <%= text_field_tag 'reservation[start_date]', nil, class: 'hasDatepicker' %>
+  <%= label_tag 'End Date : ' %> <%= date_field_tag 'reservation[end_date', nil, class: 'hasDatepicker' %>
+  <%= submit_tag 'Submit' %>
+<% end %>
+</div>
+
+<script>
+  $(function() {
+    $( ".hasDatepicker" ).datepicker();
+  });
+  </script>

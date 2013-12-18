@@ -1,0 +1,10 @@
+<div id="middlePan">
+  <br>
+  <div class="small-2 large-12 columns">
+    <%= form_for([:admin, @type]) do |f| %>
+      <%= f.label 'Type Name :' %> <%= f.text_field :name %>
+      <%= f.submit %> | <%= link_to 'Cancel', admin_types_path %>
+    <% end %>
+  </div>
+
+</div>
