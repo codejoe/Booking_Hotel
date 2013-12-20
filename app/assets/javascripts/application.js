@@ -14,8 +14,9 @@
 //= require jquery_ujs
 //= require jquery.ui.datepicker
 //= require turbolinks
+//= require foundation
 //= require_tree .
 
-$(document).ready(function() {
-    $('.hasDatepicker').datepicker()
+$(document).foundation(function() {
+    $('.hasDatepicker').fdatepicker()
 });

@@ -49,4 +49,4 @@ gem 'mysql2'
 #gem 'foundation-rails'
 gem 'kaminari'
 gem 'jquery-ui-rails'
-gem 'whenever'
+gem 'whenever', require: false
